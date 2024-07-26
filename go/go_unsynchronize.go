@@ -5,22 +5,20 @@ import (
 	"time"
 )
 
-func goroutine() {
-	index := 0
-	channel := make(chan string)
+func main() {
+	// channel := make(chan string)
 
 	// run in backgroud - not working
 	go func() {
-		for index < 10 {
+		for index := 0; index < 3; index++ {
 			fmt.Println("Hello ", index)
-
-			time.Sleep(500 * time.Millisecond)
 			index++
-
-			channel <- fmt.Sprintf("Hello %d", index)
+			// channel <- fmt.Sprintf("Hello %d", index)
 		}
 	}()
-	Call()
-	value := <-channel
-	fmt.Println(value)
+	go Call()
+	// value := <-channel
+	// fmt.Println(value)
+	time.Sleep(time.Second)
+	fmt.Println("done")
 }

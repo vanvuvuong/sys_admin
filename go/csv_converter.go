@@ -51,7 +51,3 @@ func DecodeCsv() {
 	}
 	fmt.Println(dataBucket)
 }
-
-func main() {
-	DecodeCsv()
-}
