@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func string_manipulator() {
+func stringManipulator() {
 	// declare string variable
 	var string_1 string
 	string_2 := "hi"
