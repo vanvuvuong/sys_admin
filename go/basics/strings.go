@@ -56,6 +56,9 @@ func stringManipulator() {
 		fmt.Println(noun)
 	}
 
+	// join string
+	data = strings.Join(nouns[1:], ",")
+
 	// check data len
 	len_data := len(data)
 	fmt.Printf("len=%d \n", len_data)
