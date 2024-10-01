@@ -18,12 +18,12 @@ def read_csv_file(filename: str):
             delimiter=",",
             quotechar='"',
         )
-        run_times = 0
+        # run_times = 0
         for row in content:
-            if run_times >= 2:
-                continue
+            # if run_times >= 2:
+            #     continue
             rows.append(row)
-            run_times += 1
+            # run_times += 1
     return rows
 
 
