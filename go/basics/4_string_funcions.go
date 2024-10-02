@@ -5,8 +5,6 @@ import (
 	s "strings"
 )
 
-var p = fmt.Println
-
 func stringFunction() {
 	// split string
 	data := "name;color;address"

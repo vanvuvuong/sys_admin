@@ -1,17 +1,16 @@
 package main
 
 import (
-	"fmt"
 	"time"
 )
 
-func main() {
+func GoUnsynchronize() {
 	// channel := make(chan string)
 
 	// run in backgroud - not working
 	go func() {
-		for index := 0; index < 3; index++ {
-			fmt.Println("Hello ", index)
+		for index := 0; index < 8; index++ {
+			p("Hello ", index)
 			index++
 			// channel <- fmt.Sprintf("Hello %d", index)
 		}
@@ -20,5 +19,5 @@ func main() {
 	// value := <-channel
 	// fmt.Println(value)
 	time.Sleep(time.Second)
-	fmt.Println("done")
+	p("done")
 }
