@@ -3,18 +3,17 @@ package main
 import (
 	"fmt"
 	"strconv"
-	"strings"
 )
 
-func stringManipulator() {
+func stringBasic() {
 	// declare string variable
-	var string_1 string
-	string_2 := "hi"
-	string_3 := "folk"
+	var string1 string
+	string1 = "hi"
+	string2 := "fork"
 
 	// concate strings
-	string_4 := fmt.Sprintf("%s %s", string_2, string_3)
-	fmt.Println(string_4)
+	string3 := fmt.Sprintf("%s %s", string1, string2)
+	fmt.Println(string3)
 
 	// convert string to number
 	var (
@@ -22,9 +21,9 @@ func stringManipulator() {
 		int_value_1   int64
 		float_value_1 float64
 	)
-	string_1 = "5"
+	string1 = "5"
 	string_5 := "5.5"
-	int_value_1, err = strconv.ParseInt(string_1, 10, 32) // base10, 32 size
+	int_value_1, err = strconv.ParseInt(string1, 10, 32) // base10, 32 size
 	if err == nil {
 		fmt.Println(int_value_1)
 	} else {
@@ -46,23 +45,5 @@ func stringManipulator() {
 	string_number_1 = fmt.Sprintf("%d", number_1)
 	fmt.Println(string_number_1)
 	string_number_2 = fmt.Sprintf("%f", number_2)
-	fmt.Print(string_number_2)
-	fmt.Print()
-
-	// split string
-	data := "name;color;address"
-	nouns := strings.Split(data, ";")
-	for _, noun := range nouns {
-		fmt.Println(noun)
-	}
-
-	// join string
-	data = strings.Join(nouns[1:], ",")
-
-	// check data len
-	len_data := len(data)
-	fmt.Printf("len=%d \n", len_data)
-
-	// upper
-	fmt.Println(strings.ToUpper(data))
+	fmt.Println(string_number_2)
 }
