@@ -1,4 +1,4 @@
-package main
+package basics
 
 func RangeOverData() {
 	// loop over array

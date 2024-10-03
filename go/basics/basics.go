@@ -1,11 +1,15 @@
-package main
+package basics
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+)
 
 var (
 	p  = fmt.Println
 	pf = fmt.Printf
 	sf = fmt.Sprintf
+	l  = log.Println
 )
 
 func main() {
@@ -16,4 +20,5 @@ func main() {
 	// Loop()
 	// RangeOverData()
 	// GoUnsynchronize()
+	// InputScanner()
 }
