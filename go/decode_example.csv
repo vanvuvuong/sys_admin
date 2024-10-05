@@ -1,2 +1,8 @@
 1;"programming language";"golang"
 2;"container";"docker"
+3;"container";"podman"
+4;"container";"crio"
+5;"container";"k8s"
+6;"container";"colima"
+7;"container";"openshift"
+8;"container";"k0s"
