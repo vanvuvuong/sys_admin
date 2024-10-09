@@ -12,6 +12,13 @@ var (
 	l  = log.Println
 )
 
+func Check(prefix string, err error) {
+	if err != nil {
+		l(prefix, ": ", err)
+		panic(err)
+	}
+}
+
 func main() {
 	// Define()
 	// AdvancedDefine()

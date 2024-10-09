@@ -13,7 +13,6 @@ func InputScanner() {
 		lines++
 	}
 	pf("There are %d line(s)\n", lines)
-	if err := input.Err(); err != nil {
-		p("Error when get input", err)
-	}
+	err := input.Err()
+	Check("Error when get user input", err)
 }

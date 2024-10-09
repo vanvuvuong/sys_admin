@@ -13,6 +13,13 @@ var (
 	lf = log.Fatalln
 )
 
+func Check(prefix string, err error) {
+	if err != nil {
+		l(prefix, ": ", err)
+		panic(err)
+	}
+}
+
 func main() {
 	// GetRequest()
 	// DecodeCsv("decode_example.csv", ';')

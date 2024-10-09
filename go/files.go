@@ -6,15 +6,13 @@ import (
 
 func OpenFile(filename string) *os.File {
 	file, err := os.Open(filename)
-	if err != nil {
-		p(err)
-		os.Exit(1)
-	}
+	Check("Error open file", err)
 	return file
 }
 
 func ReadFile(filename string) string {
-	data, _ := os.ReadFile(filename)
+	data, err := os.ReadFile(filename)
+	Check("Error read file", err)
 	// p("File content")
 	// p(string(data))
 	return string(data)
@@ -28,9 +26,6 @@ func WriteFile(filename, message string) {
 
 func CreateFile(filename string) *os.File {
 	file, err := os.Create(filename)
-	if err != nil {
-		p(err)
-		os.Exit(1)
-	}
+	Check("Error create file", err)
 	return file
 }

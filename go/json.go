@@ -14,10 +14,7 @@ func EncodeJson() {
 	p(">>Encoding struct to Json")
 	data := &Data{Id: 1, Category: "ProgrammingLanguage", Name: "Golang"}
 	encodingData, err := json.Marshal(data)
-	if err != nil {
-		p(err)
-		return
-	}
+	Check("Error encoding JSON", err)
 	p(string(encodingData))
 }
 
