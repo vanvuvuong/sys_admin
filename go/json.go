@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"reflect"
+	"strings"
 )
 
 type Data struct {
@@ -19,24 +20,17 @@ func EncodeJson() {
 	p(string(encodingData))
 }
 
-// func DecodeJson() {
-// 	var newData Data
-// 	message := `{"Id":1,"Category":"ProgrammingLanguage","Name":"Golang"}`
-// 	p(">>Decoding Json to struct")
-// 	json.Unmarshal([]byte(message), &newData)
-// 	pf("Id: %d\n", newData.Id)
-// 	pf("Category: %s\n", newData.Category)
-// 	pf("Name: %s\n", newData.Name)
-// }
-
-func stringify(data map[string]interface{}) map[string]interface{} {
+func mapStringify(data map[string]interface{}) map[string]any {
 	for key, value := range data {
 		stringValue, err := value.(string)
 		if err {
+			l(err)
 			jsonType := reflect.TypeOf(value)
-			switch sf("%s", jsonType) {
+			switch jsonType.String() {
 			case "map[string]interface {}":
-				return stringify(value.(map[string]interface{}))
+				tempValue, _ := value.(map[string]interface{})
+				Check("Error parse nested JSON", &json.MarshalerError{})
+				value = mapStringify(tempValue)
 			default:
 				continue
 			}
@@ -51,18 +45,13 @@ func stringify(data map[string]interface{}) map[string]interface{} {
 func sliceStringify(data []interface{}) []map[string]interface{} {
 	jsonType := reflect.TypeOf(data)
 	var newData []map[string]interface{}
-	switch sf("%s", jsonType) {
+	switch jsonType.String() {
 	case "[]interface {}":
-		for _, row := range data.([]interface{}) {
-			newData = append(newData, stringify(row.(map[string]interface{})))
+		for _, row := range data {
+			tempRow := row.(map[string]interface{})
+			Check("Error parse nested JSON", &json.MarshalerError{})
+			newData = append(newData, mapStringify(tempRow))
 		}
-		return newData
-	case "[]map[string]interface {}":
-		for _, row := range data.(map[string]interface{}) {
-			newData = append(newData, stringify(row.(map[string]interface{})))
-		}
-		return newData
-	case "[]map":
 		return newData
 	default:
 		return newData
@@ -72,7 +61,48 @@ func sliceStringify(data []interface{}) []map[string]interface{} {
 func DecodeJson(data []byte) map[string]any {
 	var jsonData map[string]interface{}
 	err := json.Unmarshal(data, &jsonData)
-	jsonData = stringify(jsonData)
+	for key, value := range jsonData {
+		switch strings.HasPrefix(reflect.TypeOf(value).String(), "[]") {
+		case true:
+			tempValue, _ := value.([]interface{})
+			Check("Error parse nested JSON", &json.MarshalerError{})
+			value = sliceStringify(tempValue)
+		default:
+			tempValue, _ := value.(map[string]interface{})
+			Check("Error parse nested JSON", &json.MarshalerError{})
+			value = mapStringify(tempValue)
+		}
+		jsonData[key] = value
+	}
 	Check("Error decode json", err)
 	return jsonData
 }
+
+// func process(in interface{}) {
+//   switch v := in.(type) {
+//   case map[string]*Book:
+//      for s, b := range v {
+//          // b has type *Book
+//          fmt.Printf("%s: book=%v\n" s, b)
+//      }
+//   case map[string]*Author:
+//      for s, a := range v {
+//          // a has type *Author
+//          fmt.Printf("%s: author=%v\n" s, a)
+//      }
+//    case []*Book:
+//      for i, b := range v {
+//          fmt.Printf("%d: book=%v\n" i, b)
+//      }
+//    case []*Author:
+//      for i, a := range v {
+//          fmt.Printf("%d: author=%v\n" i, a)
+//      }
+//    case *Book:
+//      fmt.Ptintf("book=%v\n", v)
+//    case *Author:
+//      fmt.Printf("author=%v\n", v)
+//    default:
+//      // handle unknown type
+//    }
+// }
