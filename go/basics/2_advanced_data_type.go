@@ -7,12 +7,16 @@ type exampleStructType struct {
 }
 
 // method:
-type circle struct {
+type Circle struct {
 	Radius float32
 }
 
-func (c circle) area() float32 {
+func (c Circle) area() float32 {
 	return 3.14 * c.Radius * c.Radius
+}
+
+func (c *Circle) bigger() {
+	c.Radius = 10 * c.Radius
 }
 
 func zero(interval int) {
@@ -27,12 +31,12 @@ func zeropointer(interval *int) {
 func AdvancedDefine() {
 	// pointer: use with `&` before variable, point to memory reference
 	interval := 1
-	p("Pointer reference value", &interval)
-	p("Pointer value", interval)
 	zero(interval)
+	p("Pointer without pointer symbol reference value", &interval)
+	p("Pointer without pointer symbol value", interval)
 	zeropointer(&interval)
-	p("Pointer reference value", &interval)
-	p("Pointer value", interval)
+	p("Pointer without pointer symbol reference value", &interval)
+	p("Pointer without pointer symbol value", interval)
 
 	// struct implement
 	exampleStruct := new(exampleStructType)
@@ -41,8 +45,15 @@ func AdvancedDefine() {
 	p("Example struct", exampleStruct)
 
 	// method implement
-	c := circle{1.2}
+	c := Circle{1.2}
 	pf("Area of %f circle is %f\n", c.Radius, c.area())
+
+	// method used pointer
+	// bigC := &Circle{1.5} // same as bigC := new(Circle)
+	bigC := new(Circle)
+	bigC.Radius = 1.5
+	bigC.bigger()
+	pf("Big circle radius: %f\n", bigC.Radius)
 
 	// interface: NOT NEED FOR NOW
 	// enum: NOT NEED FOR NOW

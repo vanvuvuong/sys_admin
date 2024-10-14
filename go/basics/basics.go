@@ -18,14 +18,3 @@ func Check(prefix string, err error) {
 		panic(err)
 	}
 }
-
-func main() {
-	// Define()
-	// AdvancedDefine()
-	// StringBasic()
-	// Condition()
-	// Loop()
-	// RangeOverData()
-	// GoUnsynchronize()
-	// InputScanner()
-}
