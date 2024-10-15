@@ -6,15 +6,15 @@ import (
 )
 
 var (
-	p  = fmt.Println
-	pf = fmt.Printf
-	sf = fmt.Sprintf
-	l  = log.Println
+	P  = fmt.Println
+	Pf = fmt.Printf
+	Sf = fmt.Sprintf
+	L  = log.Println
 )
 
 func Check(prefix string, err error) {
 	if err != nil {
-		l(prefix, ": ", err)
-		panic(err)
+		L(prefix, ": ", err)
+		// panic(err) - will give you the same message
 	}
 }

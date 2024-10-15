@@ -11,8 +11,8 @@ func StringBasic() {
 	string2 := "fork"
 
 	// concate strings
-	string3 := sf("%s %s", string1, string2)
-	p("String:", string3)
+	string3 := Sf("%s %s", string1, string2)
+	P("String:", string3)
 
 	// convert string to number
 	var (
@@ -24,16 +24,16 @@ func StringBasic() {
 	string_5 := "5.5"
 	int_value_1, err = strconv.ParseInt(string1, 10, 32) // base10, 32 size
 	if err == nil {
-		p("String to Int:", int_value_1)
+		P("String to Int:", int_value_1)
 	} else {
-		p(err)
+		P(err)
 	}
 
 	float_value_1, err = strconv.ParseFloat(string_5, 64) // 64size
 	if err == nil {
-		p("String to Float:", float_value_1)
+		P("String to Float:", float_value_1)
 	} else {
-		p(err)
+		P(err)
 	}
 
 	// convert numberic to string
@@ -41,8 +41,8 @@ func StringBasic() {
 	number_2 := 8.8
 
 	var string_number_1, string_number_2 string
-	string_number_1 = sf("%d", number_1)
-	p("String:", string_number_1)
-	string_number_2 = sf("%f", number_2)
-	p("String:", string_number_2)
+	string_number_1 = Sf("%d", number_1)
+	P("String:", string_number_1)
+	string_number_2 = Sf("%f", number_2)
+	P("String:", string_number_2)
 }

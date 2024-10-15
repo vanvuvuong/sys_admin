@@ -10,7 +10,7 @@ func GoUnsynchronize() {
 	// run in backgroud - not working
 	go func() {
 		for index := 0; index < 8; index++ {
-			p("Hello ", index)
+			P("Hello ", index)
 			index++
 			// channel <- fmt.Sprintf("Hello %d", index)
 		}
@@ -19,5 +19,5 @@ func GoUnsynchronize() {
 	// value := <-channel
 	// fmt.Println(value)
 	time.Sleep(time.Second)
-	p("done")
+	P("done")
 }

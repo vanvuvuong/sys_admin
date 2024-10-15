@@ -1,7 +1,7 @@
 package basics
 
 func Log() {
-	p("This is log example.")
-	l("Error /index.html 404 not found.")
-	l("Service denied 503.")
+	P("This is log example.")
+	L("Error /index.html 404 not found.")
+	L("Service denied 503.")
 }
