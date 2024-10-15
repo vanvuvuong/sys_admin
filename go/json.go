@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/go/basics"
 	fjson "github.com/valyala/fastjson"
 )
 
@@ -10,17 +11,19 @@ func DecodeJson(data []byte) *fjson.Value {
 
 	// convert to to object
 	objectJsonData, err := jsonData.Object()
-	Check("Error convert JSON to Object", err)
+	basics.Check("Error convert JSON to Object", err)
 
 	// loop over object
 	objectJsonData.Visit(func(key []byte, value *fjson.Value) {
-		pf("%v: %v", key, value)
+		basics.Pf("%v: %v", key, value)
 	})
+	// update new value for objectJsonData["example"]
 	objectJsonData.Set("example", newValue.NewString("value"))
 
 	// loop over array
 	arrayJsonData, err := jsonData.Array()
-	Check("Error convert JSON to array", err)
+	basics.Check("Error convert JSON to array", err)
+	// clone new JSON array
 	newArray := newValue.NewArray()
 	for index, object := range arrayJsonData {
 		newArray.SetArrayItem(index, object)
