@@ -1,7 +1,7 @@
-package main
+package gosysadmin
 
 import (
-	"github.com/go/basics"
+	"github.com/gosysadmin/basics"
 	fjson "github.com/valyala/fastjson"
 )
 

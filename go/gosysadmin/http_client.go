@@ -1,17 +1,18 @@
-package main
+package gosysadmin
 
 import (
 	"bytes"
 	"io"
 	"net/http"
 
-	"github.com/go/basics"
+	"github.com/gosysadmin/basics"
 )
 
 var client = http.Client{}
 
 func GetRequest(url string, headers map[string]string) string {
 	req, err := http.NewRequest("GET", url, nil)
+	basics.P(">>Send GET request to ", url)
 	basics.Check("Error create request", err)
 	for key, value := range headers {
 		req.Header.Add(key, value)
@@ -36,12 +37,4 @@ func PostRequest(url string, headers map[string]string, payload []byte) string {
 	body, err := io.ReadAll(resp.Body)
 	basics.Check("Error parse request body", err)
 	return string(body)
-}
-
-func Example(token string) {
-	customHeader := map[string]string{
-		"user-agent":    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0",
-		"authorization": basics.Sf("Bearer %s", token),
-	}
-	GetRequest("https://example.com", customHeader)
 }

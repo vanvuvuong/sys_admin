@@ -1,9 +1,9 @@
-package main
+package gosysadmin
 
 import (
 	"encoding/csv"
 
-	"github.com/go/basics"
+	"github.com/gosysadmin/basics"
 )
 
 func DecodeCsv(filename string, delimiter ...rune) [][]string {

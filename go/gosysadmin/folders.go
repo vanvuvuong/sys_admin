@@ -1,9 +1,9 @@
-package main
+package gosysadmin
 
 import (
 	"os"
 
-	"github.com/go/basics"
+	"github.com/gosysadmin/basics"
 )
 
 func CreateFolder(folderPath string) {

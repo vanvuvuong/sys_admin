@@ -1,12 +1,12 @@
 package main
 
 import (
-	"github.com/go/basics"
+	"github.com/gosysadmin/basics"
+	"github.com/gosysadmin/gosysadmin"
 )
 
 func main() {
 	basics.AdvancedDefine()
 	basics.GoRoutine()
-	// GetRequest()
-	// DecodeCsv("decode_example.csv", ';')
+	gosysadmin.DecodeCsv("example.csv", ';')
 }
