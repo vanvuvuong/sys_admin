@@ -5,7 +5,7 @@ import (
 	s "strings"
 )
 
-func stringFunction() {
+func StringFunction() {
 	// split string
 	data := "name;color;address"
 	nouns := s.Split(data, ";")
@@ -26,5 +26,5 @@ func stringFunction() {
 	P("ToLower: ", s.ToLower(data))
 }
 
-func stringEncoding() {
+func StringEncoding() {
 }

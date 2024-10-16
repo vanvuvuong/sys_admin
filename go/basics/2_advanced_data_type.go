@@ -20,7 +20,7 @@ func (c *Circle) bigger() {
 }
 
 func zero(interval int) {
-	interval = 0 // dereference the pointer & assign value to 0
+	interval = 0 // assign value to 0
 }
 
 func zeropointer(interval *int) {

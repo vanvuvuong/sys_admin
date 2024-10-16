@@ -15,7 +15,7 @@ func GoUnsynchronize() {
 			// channel <- fmt.Sprintf("Hello %d", index)
 		}
 	}()
-	go Call()
+	go Add(1, 5)
 	// value := <-channel
 	// fmt.Println(value)
 	time.Sleep(time.Second)

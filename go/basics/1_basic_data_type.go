@@ -1,7 +1,7 @@
 package basics
 
 func Define() {
-	// char variable example
+	// char variable example, call `rune` on golang
 	exampleChar := 'a'
 	P("Character:", exampleChar)
 
