@@ -6,6 +6,7 @@
 | Int                       | %d           |
 | Binary / Octal            | %b / %o / %O |
 | Character                 | %c           |
+| Error                     | %w           |
 | Heximal                   | %x / %X      |
 | Unicode                   | %U           |
 | Float                     | %f / %e / %E |
