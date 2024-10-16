@@ -1,3 +1,4 @@
 tmp
 manifests
 **/*/*.log
+**/*/file*.csv
