@@ -35,6 +35,7 @@ func run(filenames []string, op string, column int, out io.Writer) error {
 	}
 	consolidate := make([]float64, 0)
 	for _, fname := range filenames {
+		// fmt.Printf("Process: %s\n", fname)
 		f, err := os.Open(fname)
 		if err != nil {
 			return fmt.Errorf("can't open file: %w", err)
