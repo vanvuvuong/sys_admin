@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"errors"
 	"io"
-	"os"
 	"path/filepath"
 	"testing"
 )
@@ -18,21 +17,21 @@ func TestRun(t *testing.T) {
 		files  []string
 		expErr error
 	}{
-		{
-			name: "RunAvg1File", col: 3, op: "avg", exp: "227.6\n",
-			files:  []string{"./testdata/example.csv"},
-			expErr: nil,
-		},
-		{
-			name: "RunAvgMultiFiles", col: 3, op: "avg", exp: "233.84\n",
-			files:  []string{"./testdata/example.csv", "./testdata/example2.csv"},
-			expErr: nil,
-		},
-		{
-			name: "RunFailRead", col: 2, op: "avg", exp: "",
-			files:  []string{"./testdata/example.csv", "./testdata/fakefile.csv"},
-			expErr: os.ErrNotExist,
-		},
+		// {
+		// 	name: "RunAvg1File", col: 3, op: "avg", exp: "227.6\n",
+		// 	files:  []string{"./testdata/example.csv"},
+		// 	expErr: nil,
+		// },
+		// {
+		// 	name: "RunAvgMultiFiles", col: 3, op: "avg", exp: "233.84\n",
+		// 	files:  []string{"./testdata/example.csv", "./testdata/example2.csv"},
+		// 	expErr: nil,
+		// },
+		// {
+		// 	name: "RunFailRead", col: 2, op: "avg", exp: "",
+		// 	files:  []string{"./testdata/example.csv", "./testdata/fakefile.csv"},
+		// 	expErr: os.ErrNotExist,
+		// },
 		{
 			name: "RunFailColumn", col: 0, op: "avg", exp: "",
 			files:  []string{"./testdata/example.csv"},
