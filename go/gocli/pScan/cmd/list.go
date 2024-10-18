@@ -1,27 +1,28 @@
 /*
 Copyright © 2024 NAME HERE <EMAIL ADDRESS>
-
 */
 package cmd
 
 import (
 	"fmt"
+	"io"
+	"os"
 
+	"github.com/gocli/pScan/scan"
 	"github.com/spf13/cobra"
 )
 
 // listCmd represents the list command
 var listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("list called")
+	Aliases: []string{"l"},
+	Use:     "list",
+	Short:   "List hosts in hosts list",
+	Run: func(cmd *cobra.Command, args []string) error {
+		hostFile, err := cmd.Flags().GetString("hosts-file")
+		if err != nil {
+			return err
+		}
+		return listAction(os.Stdout, hostFile, args)
 	},
 }
 
@@ -37,4 +38,17 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// listCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+}
+
+func listAction(out io.Writer, hostFile string, args []string) error {
+	hl := &scan.HostList{}
+	if err := hl.Load(hostFile); err != nil {
+		return err
+	}
+	for _, h := range hl.Hosts {
+		if _, err := fmt.Fprintln(out, h); err != nil {
+			return err
+		}
+	}
+	return nil
 }
