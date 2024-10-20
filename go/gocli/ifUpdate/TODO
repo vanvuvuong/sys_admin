@@ -1,0 +1,21 @@
+Pre-requiste:
+- env config
+- csv file of connection pattern & attribute values need to updated
+
+Action:
+- fetch connection data: name, id
+- checking current attribute vs attribute on website
+- update selected connection attribute based on csv file
+- export connection data to csv file: all, selected connection
+
+Error:
+- internet interrupt
+- not found connection pattern
+- invalid attribute
+
+=> command:
+fetch   -> all
+        -> based on file
+update  -> based on file
+export  -> all
+        -> based on file
