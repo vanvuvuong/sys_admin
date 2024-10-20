@@ -17,7 +17,7 @@ var listCmd = &cobra.Command{
 	Aliases: []string{"l"},
 	Use:     "list",
 	Short:   "List hosts in hosts list",
-	Run: func(cmd *cobra.Command, args []string) error {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		hostFile, err := cmd.Flags().GetString("hosts-file")
 		if err != nil {
 			return err
@@ -41,7 +41,7 @@ func init() {
 }
 
 func listAction(out io.Writer, hostFile string, args []string) error {
-	hl := &scan.HostList{}
+	hl := &scan.HostsList{}
 	if err := hl.Load(hostFile); err != nil {
 		return err
 	}

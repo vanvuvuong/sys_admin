@@ -10,6 +10,7 @@ import (
 
 	"github.com/gocli/pScan/scan"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 // addCmd represents the add command
@@ -19,11 +20,8 @@ var addCmd = &cobra.Command{
 	Args:         cobra.MinimumNArgs(1),
 	SilenceUsage: true,
 	Short:        "Add new host(s) to list",
-	Run: func(cmd *cobra.Command, args []string) error {
-		hostsFile, err := cmd.Flags().GetString("hosts-file")
-		if err != nil {
-			return err
-		}
+	RunE: func(cmd *cobra.Command, args []string) error {
+		hostsFile := viper.GetString("hosts-file")
 		return addAction(os.Stdout, hostsFile, args)
 	},
 }
@@ -43,7 +41,7 @@ func init() {
 }
 
 func addAction(out io.Writer, hostsFile string, args []string) error {
-	hl := &scan.HostList{}
+	hl := &scan.HostsList{}
 	if err := hl.Load(hostsFile); err != nil {
 		return err
 	}

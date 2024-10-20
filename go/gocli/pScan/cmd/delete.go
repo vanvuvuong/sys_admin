@@ -16,9 +16,10 @@ import (
 var deleteCmd = &cobra.Command{
 	Use:          "delete <host1>...<host n>",
 	Short:        "Delete host(s) to list",
+	Aliases:      []string{"d"},
 	Args:         cobra.MinimumNArgs(1),
 	SilenceUsage: true,
-	Run: func(cmd *cobra.Command, args []string) error {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		hostsFile, err := cmd.Flags().GetString("hosts-file")
 		if err != nil {
 			return err
@@ -42,7 +43,7 @@ func init() {
 }
 
 func deleteAction(out io.Writer, hostsFile string, args []string) error {
-	hl := &scan.HostList{}
+	hl := &scan.HostsList{}
 	if err := hl.Load(hostsFile); err != nil {
 		return err
 	}
