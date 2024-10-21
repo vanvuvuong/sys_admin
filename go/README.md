@@ -1,23 +1,23 @@
-# String formatting map
-|                           | Abbr         |
-| ------------------------- | ------------ |
-| Type                      | %T           |
-| Bool                      | %t           |
-| Int                       | %d           |
-| Binary / Octal            | %b / %o / %O |
-| Character                 | %c           |
-| Error                     | %w           |
-| Heximal                   | %x / %X      |
-| Unicode                   | %U           |
-| Float                     | %f / %e / %E |
-| String                    | %s / %q      |
-| Value in a default format | %v / %#v     |
-| Pointer                   | %p           |
-| Number & Width            | %6d          |
-| Float & Width             | %6.3f        |
-| String & Width            | %10s / %-10s |
+Table of content <sup><sup>[back](../README.md)</sup></sup>
+- [String formatting map](#string-formatting-map)
+- [Golang Keywords](#golang-keywords)
+- [Golang Built-ins](#golang-built-ins)
+- [Code structure](#code-structure)
+- [Golang mistakes](#golang-mistakes)
 
-# Golang Keywords
+# [String formatting map](#table-of-content)
+| Type name      | Abbr         | Type name                 | Abbr         |
+| -------------- | ------------ | ------------------------- | ------------ |
+| Type           | %T           | Unicode                   | %U           |
+| Bool           | %t           | Float                     | %f / %e / %E |
+| Int            | %d           | String                    | %s / %q      |
+| Binary / Octal | %b / %o / %O | Value in a default format | %v / %#v     |
+| Character      | %c           | Pointer                   | %p           |
+| Error          | %w           | Number & Width            | %6d          |
+| Heximal        | %x / %X      | Float & Width             | %6.3f        |
+| String & Width | %10s / %-10s |                           |              |
+
+# [Golang Keywords](#table-of-content)
 | -        | -           | -      | -         | -      |
 | -------- | ----------- | ------ | --------- | ------ |
 | break    | default     | func   | interface | select |
@@ -27,7 +27,7 @@
 | continue | for         | import | return    | var    |
 
 
-# Go Built-ins
+# [Golang Built-ins](#table-of-content)
 | -       | -          | -         | -      | -     |
 | ------- | ---------- | --------- | ------ | ----- |
 | append  | bool       | byte      | cap    | close |
@@ -39,9 +39,11 @@
 | uint    | uint16     | uint32    | uint64 | uint8 |
 | uintptr |            |           |        |       |
 
-# Code structure
+# [Code structure](#table-of-content)
 
-## Common structure
+<details>
+<summary> 1. Common structure </summary>
+
 ```go
 project-root/
     ├── cmd/
@@ -121,127 +123,153 @@ Here's a brief explanation of the key directories:
 - `docs/`: Project documentation, such as design documents or API documentation.
 
 The folder structure for a Go project can vary depending on the size and complexity of the project, as well as personal or team preferences. Here are some alternative folder structures for Go projects:
+</details>
 
-## 1. **Flat Structure**:
-   In smaller projects, you might opt for a flat structure where all your Go source files reside in the project root directory. This approach is simple but may become hard to manage as the project grows.
+---
 
-   ```go
-   project-root/
-       ├── main.go
-       ├── handler.go
-       ├── config.go
-       ├── database.go
-       ├── ...
-       ├── static/
-       ├── templates/
-       ├── scripts/
-       ├── configs/
-       ├── tests/
-       └── docs/
-   ```
+<details>
+<summary> 2. Flat Structure </summary>
+In smaller projects, you might opt for a flat structure where all your Go source files reside in the project root directory. This approach is simple but may become hard to manage as the project grows.
 
-## 2. **Layered Structure**:
-   Organize your code into layers, such as "web," "api," and "data." This approach helps separate concerns.
+ ```go
+ project-root/
+     ├── main.go
+     ├── handler.go
+     ├── config.go
+     ├── database.go
+     ├── ...
+     ├── static/
+     ├── templates/
+     ├── scripts/
+     ├── configs/
+     ├── tests/
+     └── docs/
+ ```
+</details>
 
-   ```go
-   project-root/
-       ├── main.go
-       ├── web/
-       │   ├── handler.go
-       │   ├── static/
-       │   ├── templates/
-       ├── api/
-       │   ├── routes.go
-       │   ├── middleware/
-       ├── data/
-       │   ├── database.go
-       │   ├── repository.go
-       ├── configs/
-       ├── tests/
-       ├── docs/
-   ```
+---
 
-## 3. **Domain-Driven Design (DDD)**:
-   In larger applications, consider structuring your project based on domain-driven design principles. Each domain has its own directory.
+<details>
+<summary> 3. Layered Structure </summary>
+Organize your code into layers, such as "web," "api," and "data." This approach helps separate concerns.
 
-   ```go
-   project-root/
-       ├── cmd/
-       │   ├── app1/
-       │   ├── app2/
-       ├── internal/
-       │   ├── auth/
-       │   │   ├── handler.go
-       │   │   ├── service.go
-       │   ├── orders/
-       │   │   ├── handler.go
-       │   │   ├── service.go
-       │   ├── ...
-       ├── pkg/
-       │   ├── utility/
-       │   │   ├── ...
-       │   ├── ...
-       ├── api/
-       │   ├── app1/
-       │   │   ├── ...
-       │   ├── app2/
-       │   │   ├── ...
-       ├── web/
-       │   ├── app1/
-       │   │   ├── ...
-       │   ├── app2/
-       │   │   ├── ...
-       ├── scripts/
-       ├── configs/
-       ├── tests/
-       └── docs/
-   ```
+ ```go
+ project-root/
+     ├── main.go
+     ├── web/
+     │   ├── handler.go
+     │   ├── static/
+     │   ├── templates/
+     ├── api/
+     │   ├── routes.go
+     │   ├── middleware/
+     ├── data/
+     │   ├── database.go
+     │   ├── repository.go
+     ├── configs/
+     ├── tests/
+     ├── docs/
+ ```
+</details>
 
-## 4. **Clean Architecture**:
-   You can adopt a clean architecture approach, which emphasizes a separation of concerns between different layers of your application.
+---
 
-   ```go
-   project-root/
-       ├── cmd/
-       │   ├── your-app/
-       │   │   ├── main.go
-       ├── internal/
-       │   ├── app/
-       │   │   ├── handler.go
-       │   │   ├── service.go
-       │   ├── domain/
-       │   │   ├── model.go
-       │   │   ├── repository.go
-       ├── pkg/
-       │   ├── utility/
-       │   │   ├── ...
-       ├── api/
-       │   ├── ...
-       ├── web/
-       │   ├── ...
-       ├── scripts/
-       ├── configs/
-       ├── tests/
-       └── docs/
-   ```
+<details>
+<summary> 4. Domain-Driven Design (DDD) </summary>
+In larger applications, consider structuring your project based on domain-driven design principles. Each domain has its own directory.
 
-## 5. **Modular Structure**:
-   Organize your code into separate modules, each with its own directory structure. This approach can be useful when developing multiple independent components within a single project.
+ ```go
+ project-root/
+     ├── cmd/
+     │   ├── app1/
+     │   ├── app2/
+     ├── internal/
+     │   ├── auth/
+     │   │   ├── handler.go
+     │   │   ├── service.go
+     │   ├── orders/
+     │   │   ├── handler.go
+     │   │   ├── service.go
+     │   ├── ...
+     ├── pkg/
+     │   ├── utility/
+     │   │   ├── ...
+     │   ├── ...
+     ├── api/
+     │   ├── app1/
+     │   │   ├── ...
+     │   ├── app2/
+     │   │   ├── ...
+     ├── web/
+     │   ├── app1/
+     │   │   ├── ...
+     │   ├── app2/
+     │   │   ├── ...
+     ├── scripts/
+     ├── configs/
+     ├── tests/
+     └── docs/
+ ```
+</details>
 
-   ```go
-   project-root/
-       ├── module1/
-       │   ├── cmd/
-       │   ├── internal/
-       │   ├── pkg/
-       │   ├── api/
-       │   ├── web/
-       │   ├── scripts/
-       │   ├── configs/
-       │   ├── tests/
-       │   └── docs/
-       ├── module2/
-       │   ├── ...
-   ```
+---
+
+<details>
+<summary> 5. Clean Architecture </summary>
+You can adopt a clean architecture approach, which emphasizes a separation of concerns between different layers of your application.
+
+```go
+project-root/
+   ├── cmd/
+   │   ├── your-app/
+   │   │   ├── main.go
+   ├── internal/
+   │   ├── app/
+   │   │   ├── handler.go
+   │   │   ├── service.go
+   │   ├── domain/
+   │   │   ├── model.go
+   │   │   ├── repository.go
+   ├── pkg/
+   │   ├── utility/
+   │   │   ├── ...
+   ├── api/
+   │   ├── ...
+   ├── web/
+   │   ├── ...
+   ├── scripts/
+   ├── configs/
+   ├── tests/s
+   └── docs/
+```
+</details> 
+
+---
+
+<details>
+<summary> 6. Modular Structure </summary>
+Organize your code into separate modules, each with its own directory structure. This approach can be useful when developing multiple independent components within a single project.
+
+ ```go
+ project-root/
+     ├── module1/
+     │   ├── cmd/
+     │   ├── internal/
+     │   ├── pkg/
+     │   ├── api/
+     │   ├── web/
+     │   ├── scripts/
+     │   ├── configs/
+     │   ├── tests/
+     │   └── docs/
+     ├── module2/
+     │   ├── ...
+ ```
 
 Remember that the right folder structure depends on the specific needs of your project and your team's development practices. Choose a structure that helps maintain code organization, readability, and collaboration as your project evolves.
+</details>
+  
+---
+
+# [Golang mistakes](#table-of-content)
+Please refer to [here](./mistakes/MISTAKES.md)

@@ -1,3 +1,6 @@
+Table of content <sup><sup>[back](../README.md)</sup></sup>
+- [Python Keyword](#python-keyword)
+- [Python Built-ins](#python-built-ins)
 # Python Keyword
 | -      | -     | -      | -        | -       |
 | ------ | ----- | ------ | -------- | ------- |
