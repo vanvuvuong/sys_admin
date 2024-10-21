@@ -1,11 +1,12 @@
-Table of content <sup><sup>[back](../README.md)</sup></sup>
+# Table of content <sup><sup>[back](../README.md)</sup></sup>
+- [Table of content back](#table-of-content-back)
 - [String formatting map](#string-formatting-map)
 - [Golang Keywords](#golang-keywords)
 - [Golang Built-ins](#golang-built-ins)
 - [Code structure](#code-structure)
 - [Golang mistakes](#golang-mistakes)
 
-# [String formatting map](#table-of-content)
+# [String formatting map](#table-of-content-back)
 | Type name      | Abbr         | Type name                 | Abbr         |
 | -------------- | ------------ | ------------------------- | ------------ |
 | Type           | %T           | Unicode                   | %U           |
@@ -17,7 +18,7 @@ Table of content <sup><sup>[back](../README.md)</sup></sup>
 | Heximal        | %x / %X      | Float & Width             | %6.3f        |
 | String & Width | %10s / %-10s |                           |              |
 
-# [Golang Keywords](#table-of-content)
+# [Golang Keywords](#table-of-content-back)
 | -        | -           | -      | -         | -      |
 | -------- | ----------- | ------ | --------- | ------ |
 | break    | default     | func   | interface | select |
@@ -27,7 +28,7 @@ Table of content <sup><sup>[back](../README.md)</sup></sup>
 | continue | for         | import | return    | var    |
 
 
-# [Golang Built-ins](#table-of-content)
+# [Golang Built-ins](#table-of-content-back)
 | -       | -          | -         | -      | -     |
 | ------- | ---------- | --------- | ------ | ----- |
 | append  | bool       | byte      | cap    | close |
@@ -39,7 +40,7 @@ Table of content <sup><sup>[back](../README.md)</sup></sup>
 | uint    | uint16     | uint32    | uint64 | uint8 |
 | uintptr |            |           |        |       |
 
-# [Code structure](#table-of-content)
+# [Code structure](#table-of-content-back)
 
 <details>
 <summary> 1. Common structure </summary>
@@ -271,5 +272,5 @@ Remember that the right folder structure depends on the specific needs of your p
   
 ---
 
-# [Golang mistakes](#table-of-content)
+# [Golang mistakes](#table-of-content-back)
 Please refer to [here](./mistakes/MISTAKES.md)
