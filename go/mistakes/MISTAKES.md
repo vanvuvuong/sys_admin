@@ -150,7 +150,7 @@
 <details>
 <summary> Inefficient slice initialization </summary>
 
-- Instead of this
+- ~~Instead of this~~
   ```go
   func convert(foos []Foo) []Bar {
     bars := make([]Bar, 0)
@@ -184,3 +184,136 @@
   ```
 </details>
 
+---
+
+<details>
+<summary> Not making slice copies correctly </summary>
+
+> The `copy` function will copy source slice to destination slice (minimum length of these 2)
+
+- ~~Instead of this~~
+  ```go
+  src := []int{0, 1, 2}
+  var dst []int
+  copy(dst, src)
+  fmt.Println(dst)
+  ```
+- Use this
+  ```go
+  src := []int{0, 1, 2}
+  dst := make([]int, len(src))
+  copy(dst, src)
+  fmt.Println(dst)
+  ```
+</details>
+
+---
+
+<details>
+<summary> Unexpected side effects using slice append </summary>
+
+- ~~Instead of this~~
+  ```go
+  s1 := []int{1, 2, 3}
+  s2 := s1[0:2]
+  s3 := append(s2, 10) // this will replace 10 vs 3 in s1
+  ```
+- Use this
+  ```go
+  s1 := []int{1, 2, 3}
+  s2 := make([]int, 2)
+  copy(s2, s1)
+  s3 := append(s3, 10)
+  ```
+- Or this
+  ```go
+  s1 := []int{1, 2, 3}
+  s2 := s1[0:2:2]
+  s3 := append(s2, 10) // this will replace 10 vs 3 in s1
+  ```
+</details>
+
+---
+
+<details>
+<summary> Slices & memory leaks </summary>
+
+> Just access those 5 bytes of million bytes message using `slicing operation` will lead to memory leak by keep whole message slice in RAM
+- ~~Instead of this~~
+  ```go
+  func consumeMessages() {
+    for {
+      msg := receiveMessage()
+      // Do something with msg
+      storeMessageType(getMessageType(msg))
+    }
+  }
+  func getMessageType(msg []byte) []byte {
+    return msg[:5]
+  }
+  ```
+- Use this
+  ```go
+  func getMessageType(msg []byte) []byte {
+    msgType := make([]byte, 5)
+    copy(msgType, msg)
+    return msgType
+  }
+  ```
+</details>
+
+---
+
+<details>
+<summary> Inefficient map initialization </summary>
+
+> Same idea with create `slice` with predefine `capacity`. To reduce the compute resource when `map` size increase overtime
+- ~~Instead of this~~
+  ```go
+  m := map[string]int{
+  "1": 1,
+  "2": 2,
+  "3": 3,
+  }
+  ```
+- Use this
+  ```go
+  m := make(map[string]int, 1_000_000)
+  m["1"] = 1
+  m["2"] = 2
+  m["3"] = 3
+  ```
+</details>
+
+---
+
+<details>
+<summary> Comparing value incorrectly </summary>
+
+> `slice & map` doesn't compile.
+> comparable with `==` & `!=`: bool, numberics, string, channel, interface, pointer, struct & array
+> `reflect` compare may work, but trade off is performance
+- ~~Instead of this~~
+  ```go
+  cust1 := customer{id: "x", operations: []float64{1.}}
+  cust2 := customer{id: "x", operations: []float64{1.}}
+  fmt.Println(reflect.DeepEqual(cust1, cust2))
+  ```
+- Use this
+  ```go
+  func (a customer) equal(b customer) bool {
+    if a.id != b.id {
+      return false
+    }
+    if len(a.operations) != len(b.operations) {
+      return false
+    }
+    for i := 0; i < len(a.operations); i++ {
+      if a.operations[i] != b.operations[i] {
+        return false
+      }
+    }
+    return true
+  }
+  ```
+</details>
