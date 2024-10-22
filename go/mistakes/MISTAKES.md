@@ -1,13 +1,16 @@
 # Table of content <sup><sup>[back](../README.md)</sup></sup>
+
 - [Table of content back](#table-of-content-back)
 - [Code \& project organize](#code--project-organize)
 - [Data Type](#data-type)
 
 # [Code & project organize](#table-of-content-back)
+
 <details>
 <summary> Unintended variable shadowing </summary>
 
 - ~~Instead of~~
+
   ```go
   var client *http.Client
   if tracing {
@@ -27,6 +30,7 @@
   ```
 
 - Use this
+
   ```go
   var client *http.Client
   var err error
@@ -52,7 +56,7 @@
   // Common error handling
   }
   ```
-</details>
+  </details>
 
 ---
 
@@ -104,7 +108,7 @@
   }
   ```
   ![fig1](./line-of-sight-in-code.png)
-</details>
+  </details>
 
 ---
 
@@ -112,6 +116,7 @@
 <summary> Create utility packages </summary>
 
 > util is meaningless
+
 - ~~Instead of this~~
   ```go
   package util
@@ -130,7 +135,7 @@
   func New(...string) map[string]struct{} { ... }
   func Sort(map[string]struct{}) []string { ... }
   ```
-</details>
+  </details>
 
 ---
 
@@ -139,10 +144,12 @@
 <details>
 <summary> Slice length & capacity </summary>
 
-  ```go
-  s1 := make([]int, 3, 6) // 3-length, 6 capacity slice
-  ```
+```go
+s1 := make([]int, 3, 6) // 3-length, 6 capacity slice
+```
+
 ![](./slice-length-capacity.png)
+
 </details>
 
 ---
@@ -182,7 +189,7 @@
     return bars
   }
   ```
-</details>
+  </details>
 
 ---
 
@@ -205,7 +212,7 @@
   copy(dst, src)
   fmt.Println(dst)
   ```
-</details>
+  </details>
 
 ---
 
@@ -231,7 +238,7 @@
   s2 := s1[0:2:2]
   s3 := append(s2, 10) // this will replace 10 vs 3 in s1
   ```
-</details>
+  </details>
 
 ---
 
@@ -239,6 +246,7 @@
 <summary> Slices & memory leaks </summary>
 
 > Just access those 5 bytes of million bytes message using `slicing operation` will lead to memory leak by keep whole message slice in RAM
+
 - ~~Instead of this~~
   ```go
   func consumeMessages() {
@@ -260,7 +268,7 @@
     return msgType
   }
   ```
-</details>
+  </details>
 
 ---
 
@@ -268,6 +276,7 @@
 <summary> Inefficient map initialization </summary>
 
 > Same idea with create `slice` with predefine `capacity`. To reduce the compute resource when `map` size increase overtime
+
 - ~~Instead of this~~
   ```go
   m := map[string]int{
@@ -283,7 +292,7 @@
   m["2"] = 2
   m["3"] = 3
   ```
-</details>
+  </details>
 
 ---
 
@@ -293,6 +302,7 @@
 > `slice & map` doesn't compile.
 > comparable with `==` & `!=`: bool, numberics, string, channel, interface, pointer, struct & array
 > `reflect` compare may work, but trade off is performance
+
 - ~~Instead of this~~
   ```go
   cust1 := customer{id: "x", operations: []float64{1.}}
@@ -316,4 +326,4 @@
     return true
   }
   ```
-</details>
+  </details>

@@ -1,7 +1,10 @@
 Table of content <sup><sup>[back](../README.md)</sup></sup>
+
 - [Python Keyword](#python-keyword)
 - [Python Built-ins](#python-built-ins)
+
 # Python Keyword
+
 | -      | -     | -      | -        | -       |
 | ------ | ----- | ------ | -------- | ------- |
 | False  | None  | True   | and      | as      |
@@ -13,6 +16,7 @@ Table of content <sup><sup>[back](../README.md)</sup></sup>
 | while  | with  | yield  |          |         |
 
 # Python Built-ins
+
 | -           | -          | -         | -          | -            |
 | ----------- | ---------- | --------- | ---------- | ------------ |
 | abs         | all        | any       | ascii      | bin          |

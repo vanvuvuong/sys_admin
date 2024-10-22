@@ -1,4 +1,10 @@
-# Fish keyword
+Table of content <sup><sup>[back](../../README.md)</sup></sup>
+
+- [Fish Keyword](#fish-keyword)
+- [Fish Built-ins](#fish-built-ins)
+
+# Fish Keyword
+
 | -       | -        | -      | -       | -     |
 | ------- | -------- | ------ | ------- | ----- |
 | and     | begin    | break  | builtin | case  |
@@ -7,6 +13,7 @@
 | or      | return   | switch | time    | while |
 
 # Fish Built-ins
+
 | -           | -         | -      | -      | -           |
 | ----------- | --------- | ------ | ------ | ----------- |
 | abbr        | argparse  | bind   | cd     | commandline |
