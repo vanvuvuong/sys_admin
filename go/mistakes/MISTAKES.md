@@ -63,7 +63,7 @@
 <details>
 <summary> Unnecessary nested code </summary>
 
-- ~~Instead of this~~
+- ~~Instead of~~
   ```go
     // This join function concatenates two strings and returns a substring if the length is greater than max
     func join(s1, s2 string, max int) (string, error) {
@@ -117,7 +117,7 @@
 
 > util is meaningless
 
-- ~~Instead of this~~
+- ~~Instead of~~
   ```go
   package util
   func NewStringSet(...string) map[string]struct{} {
@@ -157,7 +157,7 @@ s1 := make([]int, 3, 6) // 3-length, 6 capacity slice
 <details>
 <summary> Inefficient slice initialization </summary>
 
-- ~~Instead of this~~
+- ~~Instead of~~
   ```go
   func convert(foos []Foo) []Bar {
     bars := make([]Bar, 0)
@@ -198,7 +198,7 @@ s1 := make([]int, 3, 6) // 3-length, 6 capacity slice
 
 > The `copy` function will copy source slice to destination slice (minimum length of these 2)
 
-- ~~Instead of this~~
+- ~~Instead of~~
   ```go
   src := []int{0, 1, 2}
   var dst []int
@@ -219,7 +219,7 @@ s1 := make([]int, 3, 6) // 3-length, 6 capacity slice
 <details>
 <summary> Unexpected side effects using slice append </summary>
 
-- ~~Instead of this~~
+- ~~Instead of~~
   ```go
   s1 := []int{1, 2, 3}
   s2 := s1[0:2]
@@ -247,7 +247,7 @@ s1 := make([]int, 3, 6) // 3-length, 6 capacity slice
 
 > Just access those 5 bytes of million bytes message using `slicing operation` will lead to memory leak by keep whole message slice in RAM
 
-- ~~Instead of this~~
+- ~~Instead of~~
   ```go
   func consumeMessages() {
     for {
@@ -277,7 +277,7 @@ s1 := make([]int, 3, 6) // 3-length, 6 capacity slice
 
 > Same idea with create `slice` with predefine `capacity`. To reduce the compute resource when `map` size increase overtime
 
-- ~~Instead of this~~
+- ~~Instead of~~
   ```go
   m := map[string]int{
   "1": 1,
@@ -303,7 +303,7 @@ s1 := make([]int, 3, 6) // 3-length, 6 capacity slice
 > comparable with `==` & `!=`: bool, numberics, string, channel, interface, pointer, struct & array
 > `reflect` compare may work, but trade off is performance
 
-- ~~Instead of this~~
+- ~~Instead of~~
   ```go
   cust1 := customer{id: "x", operations: []float64{1.}}
   cust2 := customer{id: "x", operations: []float64{1.}}
