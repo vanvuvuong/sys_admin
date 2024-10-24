@@ -9,6 +9,8 @@
 <details>
 <summary> Unintended variable shadowing </summary>
 
+> Inner variable override value of outer variable
+
 - ~~Instead of~~
 
   ```go
@@ -47,6 +49,8 @@
 
 - Or this
   ```go
+  var client *http.Client
+  var err error
   if tracing {
     client, err = createClientWithTracing()
   } else {
@@ -62,6 +66,8 @@
 
 <details>
 <summary> Unnecessary nested code </summary>
+
+> Hard readable codes are difficult to understand & maintain.
 
 - ~~Instead of~~
   ```go
@@ -88,8 +94,8 @@
     }
   ```
 - [Use this](https://medium.com/@matryer/line-of-sight-in-code-186dd7cdea88)
+  > Align the happy path to the left; you should quickly be able to scan down one column to see the expected execution flow.
   ```go
-  // Align the happy path to the left; you should quickly be able to scan down one column to see the expected execution flow.
   func join(s1, s2 string, max int) (string, error) {
     if s1 == "" {
       return "", errors.New("s1 is empty")
@@ -108,14 +114,14 @@
   }
   ```
   ![fig1](./line-of-sight-in-code.png)
-  </details>
+    </details>
 
 ---
 
 <details>
 <summary> Create utility packages </summary>
 
-> util is meaningless
+> util is meaningless, instead of that, write meaningful packages & methods
 
 - ~~Instead of~~
   ```go
@@ -157,6 +163,8 @@ s1 := make([]int, 3, 6) // 3-length, 6 capacity slice
 <details>
 <summary> Inefficient slice initialization </summary>
 
+> Without define slice capacity, `append` function will create new slice every time the old array capacity were full.
+
 - ~~Instead of~~
   ```go
   func convert(foos []Foo) []Bar {
@@ -196,7 +204,7 @@ s1 := make([]int, 3, 6) // 3-length, 6 capacity slice
 <details>
 <summary> Not making slice copies correctly </summary>
 
-> The `copy` function will copy source slice to destination slice (minimum length of these 2)
+> The `copy` function will copy source slice to destination slice (with the length is the minimum length of these 2 slice)
 
 - ~~Instead of~~
   ```go
@@ -218,6 +226,8 @@ s1 := make([]int, 3, 6) // 3-length, 6 capacity slice
 
 <details>
 <summary> Unexpected side effects using slice append </summary>
+
+> `append` will override value of original slice
 
 - ~~Instead of~~
   ```go
@@ -301,8 +311,7 @@ s1 := make([]int, 3, 6) // 3-length, 6 capacity slice
 
 > `slice & map` doesn't compile.
 > comparable with `==` & `!=`: bool, numberics, string, channel, interface, pointer, struct & array
-> `reflect` compare may work, but trade off is performance
-
+> `reflect` compare may work, but trade off is performance compare to custom code to compare each element inside them
 - ~~Instead of~~
   ```go
   cust1 := customer{id: "x", operations: []float64{1.}}
