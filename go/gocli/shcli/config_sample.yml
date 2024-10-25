@@ -1,0 +1,8 @@
+url: sample.com
+skip_ssl_check: true
+headers:
+  token:
+  tenantid: 1
+path:
+  user: api/users
+  if: api/if
