@@ -3,6 +3,7 @@
 - [Table of content back](#table-of-content-back)
 - [Code \& project organize](#code--project-organize)
 - [Data Type](#data-type)
+- [Standard Library](#standard-library)
 
 # [Code & project organize](#table-of-content-back)
 
@@ -312,6 +313,7 @@ s1 := make([]int, 3, 6) // 3-length, 6 capacity slice
 > `slice & map` doesn't compile.
 > comparable with `==` & `!=`: bool, numberics, string, channel, interface, pointer, struct & array
 > `reflect` compare may work, but trade off is performance compare to custom code to compare each element inside them
+
 - ~~Instead of~~
   ```go
   cust1 := customer{id: "x", operations: []float64{1.}}
@@ -335,4 +337,40 @@ s1 := make([]int, 3, 6) // 3-length, 6 capacity slice
     return true
   }
   ```
+  </details>
+
+---
+
+# [Standard Library](#table-of-content-back)
+
+<details>
+<summary> No HTTP client timeout request </summary>
+
+> No specific timeout for http client requests, `http.Client.Timeout` includes: `net.Dialer.Timeout`,`http.Transport.TLSHandshakeTimeout` & `http.Transport.ResponseHeaderTimeout`
+> Override the default `http connections per pool`, `idle connection timeout`, & `max idle connection per host` to suit your need
+
+![](./http-request-timeout.png)
+
+- ~~Instead of~~
+  ```go
+  client := &http.Client{}
+  resp, err := client.Get("https://golang.org/")
+  // or
+  resp, err := http.Get("https://golang.org/")
+  ```
+- Use this
+
+  ```go
+  client := &http.Client{
+  Timeout: 5 * time.Second, // global request timeout
+  Transport: &http.Transport{
+    DialContext: (&net.Dialer{
+      Timeout: time.Second, // dial timeout
+    }).DialContext,
+    TLSHandshakeTimeout: time.Second, // tls handshake timeout
+    ResponseHeaderTimeout: time.Second, // response header timeout
+    },
+  }
+  ```
+
   </details>
