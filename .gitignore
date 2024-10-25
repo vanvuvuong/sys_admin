@@ -2,3 +2,4 @@ tmp
 manifests
 **/*/*.log
 **/*/file*.csv
+.vscode/settings.json
