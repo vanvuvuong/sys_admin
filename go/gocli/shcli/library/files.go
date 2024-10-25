@@ -1,10 +1,16 @@
-package http_client
+package library
 
 import (
 	"bufio"
 	"os"
 	"strings"
 )
+
+func OpenFile(filename string) *os.File {
+	file, err := os.Open(filename)
+	Log("Error open file", err)
+	return file
+}
 
 func BufferReadFile(filename string) string {
 	file, err := os.Open(filename)

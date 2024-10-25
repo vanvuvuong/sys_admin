@@ -1,4 +1,4 @@
-package http_client
+package library
 
 import (
 	"errors"
@@ -7,5 +7,5 @@ import (
 
 var (
 	ErrFailRequests = errors.New("error to send request")
-	Log             = log.Println
+	Log             = log.Fatalln
 )

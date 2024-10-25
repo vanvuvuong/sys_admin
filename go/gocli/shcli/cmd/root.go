@@ -22,11 +22,11 @@ THE SOFTWARE.
 package cmd
 
 import (
+	"fmt"
 	"os"
 	"strings"
 
-	"github.com/gocli/shcli/http_client"
-	homedir "github.com/mitchellh/go-homedir"
+	"github.com/gocli/shcli/library"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -38,16 +38,18 @@ var (
 		Use:   "shcli",
 		Short: "Cli tool for fast get, update SH system data",
 	}
+	sf = fmt.Sprintf
 )
 
 func init() {
 	cobra.OnInitialize(initConfig)
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "shcli-config", "", "config file (default is $HOME/.shcli.yml)")
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.shcli.yml)")
 	replacer := strings.NewReplacer("-", "_")
 	viper.SetEnvKeyReplacer(replacer)
 	viper.SetEnvPrefix("SHCLI") // prefix SHCLI_XXX
 	viper.SetConfigType("yml")
-	viper.BindPFlag("shcli-config", rootCmd.PersistentFlags().Lookup("shcli-config"))
+	viper.AllowEmptyEnv(false)
+	viper.BindPFlag("config", rootCmd.PersistentFlags().Lookup("config"))
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 	versionTemplate := `{{printf "%s: %s - version %s\n" .Name .Short .Version}}`
 	rootCmd.SetVersionTemplate(versionTemplate)
@@ -67,19 +69,14 @@ func initConfig() {
 		// Use config file from the flag.
 		viper.SetConfigFile(cfgFile)
 	} else {
+		library.Log("Not found config file. Please see option -h to set it.")
+		os.Exit(1)
 		// Find home directory.
-		home, err := homedir.Dir()
-		if err != nil {
-			http_client.Log(err)
-			os.Exit(1)
-		}
-		// Search config in home directory with name ".pScan" (without extension).
-		viper.AddConfigPath(home)     // default config file name
-		viper.SetConfigName(".shcli") // default config file name
+		viper.SetConfigName(".shcli.yml") // default config file name
 	}
 	viper.AutomaticEnv() // read in environment variables that match
 	// If a config file is found, read it in.
-	if err := viper.ReadInConfig(); err == nil {
-		http_client.Log("Using config file:", viper.ConfigFileUsed())
+	if err := viper.ReadInConfig(); err != nil {
+		library.Log("Using config file:", viper.ConfigFileUsed(), "- Error:", err)
 	}
 }

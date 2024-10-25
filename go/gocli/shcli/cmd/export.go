@@ -4,8 +4,6 @@ Copyright © 2024 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
 )
 
@@ -14,9 +12,6 @@ var exportCmd = &cobra.Command{
 	Use:     "export ifconnection/user",
 	Aliases: []string{"e"},
 	Short:   "Export data from system",
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("export called")
-	},
 }
 
 func init() {

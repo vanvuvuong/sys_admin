@@ -1,4 +1,4 @@
-package http_client
+package library
 
 import (
 	"bytes"
@@ -18,7 +18,7 @@ var client = &http.Client{
 	},
 }
 
-func request(method string, header map[string]string, payload []byte, url string) (http.Response, error) {
+func Request(method string, header map[string]string, payload []byte, url string) (http.Response, error) {
 	var (
 		req *http.Request
 		err error
@@ -28,7 +28,7 @@ func request(method string, header map[string]string, payload []byte, url string
 		req, err = http.NewRequest(method, url, bytes.NewBuffer(payload))
 	}
 	if err != nil {
-		Log(err)
+		Log("Error to create new request:", err)
 		return http.Response{}, err
 	}
 	for key, value := range header {
@@ -36,11 +36,11 @@ func request(method string, header map[string]string, payload []byte, url string
 	}
 	resp, err := client.Do(req)
 	if err != nil {
-		Log(err)
+		Log("Error to send request:", err)
 		return http.Response{}, err
 	}
 	if resp.StatusCode != 200 {
-		Log("Error to get request", url)
+		Log("Error to get request, status code:", resp.StatusCode, "- URL:", url)
 		return http.Response{}, ErrFailRequests
 	}
 	defer resp.Body.Close()

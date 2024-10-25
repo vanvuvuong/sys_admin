@@ -5,7 +5,9 @@ package cmd
 
 import (
 	"fmt"
+	"io"
 
+	"github.com/gocli/shcli/library"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -36,9 +38,18 @@ func init() {
 
 func run(args []string) {
 	fmt.Println(len(args))
-	fmt.Println(viper.GetString("url"))
-	fmt.Println(viper.GetString("path.user"))
-	for key, value := range viper.GetStringMap("headers") {
-		fmt.Println(key, value)
+	var (
+		url       = viper.GetString("url")
+		user_path = viper.GetString("path.user")
+		headers   = viper.GetStringMapString("headers")
+	)
+	resp, err := library.Request("GET", headers, []byte{}, sf("%s/%s", url, user_path))
+	if err != nil {
+		library.Log("Error to get response", err)
 	}
+	respBody, err := io.ReadAll(resp.Body)
+	if err != nil {
+		library.Log("Error to read response body", err)
+	}
+	library.BufferWriteFile("all_user.json", string(respBody))
 }
