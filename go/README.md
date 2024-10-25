@@ -4,6 +4,7 @@
 - [String formatting map](#string-formatting-map)
 - [Golang Keywords](#golang-keywords)
 - [Golang Built-ins](#golang-built-ins)
+- [Go basics](#go-basics)
 - [Code structure](#code-structure)
 - [Golang mistakes](#golang-mistakes)
 
@@ -42,6 +43,22 @@
 | println | real       | recover   | string | true  |
 | uint    | uint16     | uint32    | uint64 | uint8 |
 | uintptr |            |           |        |       |
+
+# [Go basics](#table-of-content-back)
+
+- Example basic data type [codes](./basics/1_basic_data_type.go)
+- Example advanced data type [codes](./basics/2_advanced_data_type.go)
+- Example basic string [codes](./basics/3_basic_string.go)
+- Example basic string [codes](./basics/3_basic_string.go)
+- Example string manipulation [codes](./basics/4_string_functions.go)
+- Example flow controller [codes](./basics/5_flow_controller.go)
+- Example iterations [codes](./basics/6_iterations.go)
+- Example package export functions [codes](./basics/7_exported_functions.go)
+- Example concurent & multithread [codes](./basics/8_concurrent_and_multithread.go)
+- Example concurent & multithread [codes](./basics/8_concurrent_and_multithread.go)
+- Example io [codes](./basics/10_io.go)
+- Example regex [codes](./basics/11_regex.go)
+- Example error & log [codes](./basics/12_error&log.go)
 
 # [Code structure](#table-of-content-back)
 
