@@ -3,6 +3,7 @@
 - [Table of content back](#table-of-content-back)
 - [Code \& project organize](#code--project-organize)
 - [Data Type](#data-type)
+- [Errors Management](#errors-management)
 - [Standard Library](#standard-library)
 
 # [Code & project organize](#table-of-content-back)
@@ -338,6 +339,101 @@ s1 := make([]int, 3, 6) // 3-length, 6 capacity slice
   }
   ```
   </details>
+
+---
+
+# [Errors Management](#table-of-content-back)
+
+<details>
+<summary> Handle errors twice </summary>
+
+> Duplicated code when handling error. Either use `log` or `return`, never both.
+
+- ~~Instead of~~
+
+  ```go
+  func GetRoute(srcLat, srcLng, dstLat, dstLng float32) (Route, error) {
+    err := validateCoordinates(srcLat, srcLng)
+    if err != nil {
+      log.Println("failed to validate source coordinates")
+      return Route{}, err
+    }
+    err = validateCoordinates(dstLat, dstLng)
+    if err != nil {
+      log.Println("failed to validate target coordinates")
+      return Route{}, err
+    }
+    return getRoute(srcLat, srcLng, dstLat, dstLng)
+  }
+
+  func validateCoordinates(lat, lng float32) error {
+    if lat > 90.0 || lat < -90.0 {
+      log.Printf("invalid latitude: %f", lat)
+      return fmt.Errorf("invalid latitude: %f", lat)
+    }
+    if lng > 180.0 || lng < -180.0 {
+      log.Printf("invalid longitude: %f", lng)
+      return fmt.Errorf("invalid longitude: %f", lng)
+    }
+    return nil
+  }
+  ```
+
+- Use this
+
+  ```go
+  func GetRoute(srcLat, srcLng, dstLat, dstLng float32) (Route, error) {
+    err := validateCoordinates(srcLat, srcLng)
+    if err != nil {
+      return Route{}, err
+      }
+    err = validateCoordinates(dstLat, dstLng)
+    if err != nil {
+      return Route{}, err
+    }
+    return getRoute(srcLat, srcLng, dstLat, dstLng)
+  }
+
+  func validateCoordinates(lat, lng float32) error {
+    if lat > 90.0 || lat < -90.0 {
+      return fmt.Errorf("invalid latitude: %f", lat)
+    }
+    if lng > 180.0 || lng < -180.0 {
+      return fmt.Errorf("invalid longitude: %f", lng)
+    }
+    return nil
+  }
+  ```
+
+- Or this
+
+  ```go
+  func GetRoute(srcLat, srcLng, dstLat, dstLng float32) (Route, error) {
+    err := validateCoordinates(srcLat, srcLng)
+    if err != nil {
+      return Route{},
+      fmt.Errorf("failed to validate source coordinates: %w", err)
+    }
+    err = validateCoordinates(dstLat, dstLng)
+    if err != nil {
+      return Route{},
+      fmt.Errorf("failed to validate target coordinates: %w", err)
+    }
+    return getRoute(srcLat, srcLng, dstLat, dstLng)
+  }
+
+  func validateCoordinates(lat, lng float32) error {
+    if lat > 90.0 || lat < -90.0 {
+      return fmt.Errorf("invalid latitude: %f", lat)
+    }
+    if lng > 180.0 || lng < -180.0 {
+      return fmt.Errorf("invalid longitude: %f", lng)
+    }
+    return nil
+  }
+  ```
+
+</details>
 
 ---
 
