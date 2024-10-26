@@ -41,17 +41,17 @@ func Request(method string, header map[string]string, payload []byte, url string
 	}
 	successResp := []string{"200", "201", "202"}
 	if !slices.Contains(successResp, Sf("%d", resp.StatusCode)) {
+		Pf("Error to get desired response.\n\tURL:%s\n\tStatus code: %d\n", url, resp.StatusCode)
 		for index := 0; index < 5; index++ {
-			Pf("URL: %s - Retry: %d - Delay: %d\n", url, index+1, delay)
+			Pf("Retry: %d - URL: %s - Delay: %ds\n", index+1, url, delay)
 			time.Sleep(time.Duration(delay) * time.Second)
-			resp, err = client.Do(req)
+			resp, _ = client.Do(req)
 			if slices.Contains(successResp, Sf("%d", resp.StatusCode)) {
-				Pf("%w", err)
 				break
 			}
 		}
-		if resp.StatusCode != 200 {
-			return http.Response{}, Err("Error to get desired response: %s - status code: %d", url, resp.StatusCode)
+		if !slices.Contains(successResp, Sf("%d", resp.StatusCode)) {
+			return http.Response{}, Err("Error to get desired response.\n\tURL %s\n\tStatus code: %d", url, resp.StatusCode)
 		}
 	}
 	return *resp, nil

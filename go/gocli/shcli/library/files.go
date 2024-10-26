@@ -6,10 +6,8 @@ import (
 	"strings"
 )
 
-func OpenFile(filename string) *os.File {
-	file, err := os.Open(filename)
-	Log("Error open file", err)
-	return file
+func init() {
+	os.MkdirAll("./data", 0o755)
 }
 
 func BufferReadFile(filename string) (string, error) {
@@ -33,7 +31,8 @@ func BufferReadFile(filename string) (string, error) {
 
 func BufferWriteFile(filename, message string) error {
 	var err error
-	file, err := os.Create(filename)
+	filePath := Sf("%s/%s", "./data", filename)
+	file, err := os.Create(filePath)
 	if err != nil {
 		return Err("Error to create file: %w", err)
 	}

@@ -4,5 +4,5 @@ headers:
   token:
   tenantid: 1
 path:
-  user:
+  user: users
   ifconnection: api/if
