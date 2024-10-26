@@ -22,7 +22,6 @@ THE SOFTWARE.
 package cmd
 
 import (
-	"fmt"
 	"os"
 	"strings"
 
@@ -34,24 +33,27 @@ import (
 // rootCmd represents the base command when called without any subcommands
 var (
 	cfgFile string
+	dryRun  bool
 	rootCmd = &cobra.Command{
-		Use:   "shcli",
-		Short: "Cli tool for fast get, update SH system data",
+		Use:     "shcli",
+		Short:   "CLI tool for fast get, update or create SH data",
+		Version: "v0.0.1",
 	}
-	sf = fmt.Sprintf
 )
 
+// init function: will run first before any function in this file
 func init() {
 	cobra.OnInitialize(initConfig)
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.shcli.yml)")
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (no default option)")
+	rootCmd.PersistentFlags().BoolVar(&dryRun, "dry-run", false, "see how current command effects to the system")
 	replacer := strings.NewReplacer("-", "_")
 	viper.SetEnvKeyReplacer(replacer)
 	viper.SetEnvPrefix("SHCLI") // prefix SHCLI_XXX
 	viper.SetConfigType("yml")
-	viper.AllowEmptyEnv(false)
+	viper.SetConfigFile("config_sample")
 	viper.BindPFlag("config", rootCmd.PersistentFlags().Lookup("config"))
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-	versionTemplate := `{{printf "%s: %s - version %s\n" .Name .Short .Version}}`
+	versionTemplate := `{{printf "%s: %s - version: %s\n" .Name .Short .Version}}`
 	rootCmd.SetVersionTemplate(versionTemplate)
 }
 
@@ -64,17 +66,19 @@ func Execute() {
 	}
 }
 
+// viper configuration file initilization
 func initConfig() {
-	if cfgFile != "" {
-		// Use config file from the flag.
-		viper.SetConfigFile(cfgFile)
-	} else {
-		library.Log("Not found config file. Please see option -h to set it.")
+	if cfgFile == "" {
+		library.Log("Not found config file.\n\nPlease run `shcli --config file.yml [subcommand]` or `shcli config --config file.yml` to set it.\nRun `shcli -h` for more detail\n")
 		os.Exit(1)
-		// Find home directory.
-		viper.SetConfigName(".shcli.yml") // default config file name
 	}
-	viper.AutomaticEnv() // read in environment variables that match
+	if _, err := os.Stat(cfgFile); err != nil {
+		library.Log(err) // check file exists
+	}
+	// Use config file from the flag.
+	viper.SetConfigFile(cfgFile)
+	viper.AutomaticEnv() // read in environment variables in config file
+	viper.SetConfigFile(rootCmd.PersistentFlags().Lookup("config").Value.String())
 	// If a config file is found, read it in.
 	if err := viper.ReadInConfig(); err != nil {
 		library.Log("Using config file:", viper.ConfigFileUsed(), "- Error:", err)
