@@ -1,8 +1,0 @@
-url: https://www.google.com
-skip_ssl_check: true
-headers:
-  token:
-  tenantid: 1
-path:
-  user: users
-  ifconnection: api/if
