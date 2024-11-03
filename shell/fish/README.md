@@ -1,9 +1,9 @@
-Table of content <sup><sup>[back](../../README.md)</sup></sup>
+## Table of content <sup><sup>[back](../../README.md)</sup></sup>
 
 - [Fish Keyword](#fish-keyword)
 - [Fish Built-ins](#fish-built-ins)
 
-# Fish Keyword
+# [Fish Keyword](#table-of-content-back)
 
 | -       | -        | -      | -       | -     |
 | ------- | -------- | ------ | ------- | ----- |
@@ -12,7 +12,7 @@ Table of content <sup><sup>[back](../../README.md)</sup></sup>
 | for     | function | if     | in      | not   |
 | or      | return   | switch | time    | while |
 
-# Fish Built-ins
+# [Fish Built-ins](#table-of-content-back)
 
 | -           | -         | -      | -      | -           |
 | ----------- | --------- | ------ | ------ | ----------- |

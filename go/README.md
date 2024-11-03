@@ -1,6 +1,5 @@
-# Table of content <sup><sup>[back](../README.md)</sup></sup>
+## Table of content <sup><sup>[back](../README.md)</sup></sup>
 
-- [Table of content back](#table-of-content-back)
 - [String formatting map](#string-formatting-map)
 - [Golang Keywords](#golang-keywords)
 - [Golang Built-ins](#golang-built-ins)

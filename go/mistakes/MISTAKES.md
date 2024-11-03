@@ -1,6 +1,5 @@
-# Table of content <sup><sup>[back](../README.md)</sup></sup>
+## Table of content <sup><sup>[back](../README.md)</sup></sup>
 
-- [Table of content back](#table-of-content-back)
 - [Code \& project organize](#code--project-organize)
 - [Data Type](#data-type)
 - [Control Structures](#control-structures)

@@ -1,6 +1,6 @@
-# System Admin Tools:
+# System Admin Tools + Guide:
 
-## Go for administrator:
+## Golang for administrator:
 
 - Please refer to [here](./go/README.md).
 

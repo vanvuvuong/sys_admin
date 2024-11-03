@@ -1,6 +1,5 @@
-# Table of content <sup><sup>[back](../README.md)</sup></sup>
+## Table of content <sup><sup>[back](../README.md)</sup></sup>
 
-- [Table of content back](#table-of-content-back)
 - [Python Keyword](#python-keyword)
 - [Python Built-ins](#python-built-ins)
 - [Python Basics](#python-basics)
