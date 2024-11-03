@@ -1,9 +1,11 @@
-Table of content <sup><sup>[back](../README.md)</sup></sup>
+# Table of content <sup><sup>[back](../README.md)</sup></sup>
 
+- [Table of content back](#table-of-content-back)
 - [Python Keyword](#python-keyword)
 - [Python Built-ins](#python-built-ins)
+- [Python Basics](#python-basics)
 
-# Python Keyword
+# [Python Keyword](#table-of-content-back)
 
 | -      | -     | -      | -        | -       |
 | ------ | ----- | ------ | -------- | ------- |
@@ -15,7 +17,7 @@ Table of content <sup><sup>[back](../README.md)</sup></sup>
 | or     | pass  | raise  | return   | try     |
 | while  | with  | yield  |          |         |
 
-# Python Built-ins
+# [Python Built-ins](#table-of-content-back)
 
 | -           | -          | -         | -          | -            |
 | ----------- | ---------- | --------- | ---------- | ------------ |
@@ -33,3 +35,11 @@ Table of content <sup><sup>[back](../README.md)</sup></sup>
 | set         | setattr    | slice     | sorted     | staticmethod |
 | str         | sum        | super     | tuple      | type         |
 | vars        | zip        |           |            |              |
+
+# [Python Basics](#table-of-content-back)
+
+- Must now built-ins example [here](./builtins_functions.py)
+- Cloudwatch notifier to Microsoft Teams Channel [here](./cloudwatch_teams_notifier.py)
+- Basic CSV reader [here](./csv.py)
+- Basic JSON reader [here](./json.py)
+- Basic automatic keyboard & mouse [here](./pyautogui.py)
