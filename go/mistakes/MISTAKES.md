@@ -3,6 +3,7 @@
 - [Table of content back](#table-of-content-back)
 - [Code \& project organize](#code--project-organize)
 - [Data Type](#data-type)
+- [Control Structures](#control-structures)
 - [Errors Management](#errors-management)
 - [Standard Library](#standard-library)
 
@@ -337,6 +338,70 @@ s1 := make([]int, 3, 6) // 3-length, 6 capacity slice
     }
     return true
   }
+  ```
+  </details>
+
+---
+
+# [Control Structures](#table-of-content-back)
+
+<details>
+<summary> Ignore that elements are copied in range loops </summary>
+
+- ~~Instead of~~
+  ```go
+  accounts := []account{
+    {balance: 100.},
+    {balance: 200.},
+    {balance: 300.},
+  }
+  for _, a := range accounts {
+    a.balance += 1000
+  }
+  // a will be [{100} {200} {300}] after range loop
+  ```
+- Use this
+  ```go
+  for i := range accounts {
+    accounts[i].balance += 1000
+  }
+  for i := 0; i < len(accounts); i++ {
+    accounts[i].balance += 1000
+  }
+  ```
+  </details>
+
+---
+
+<details>
+<summary> Ignore how break statement work </summary>
+
+> Unexpected result when misunderstanding `break` statement
+
+- ~~Instead of~~
+  ```go
+  // this will terminate the switch block, not for block
+  for i := 0; i < 5; i++ {
+    fmt.Printf("%d ", i)
+    switch i {
+      default:
+    case 2:
+      break
+    }
+  }
+  ```
+- Use this
+  ```go
+  // terminate for block
+  loop:
+    for i := 0; i < 5; i++ {
+      fmt.Printf("%d ", i)
+      switch i {
+        default:
+        case 2:
+          break loop
+      }
+    }
   ```
   </details>
 
