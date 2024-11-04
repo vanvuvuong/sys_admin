@@ -3,3 +3,4 @@ manifests
 **/*/*.log
 **/*/file*.csv
 .vscode/settings.json
+Linux Commands.ods
