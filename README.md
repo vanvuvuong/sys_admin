@@ -1,18 +1,18 @@
-# System Admin Tools + Guide:
+# System Admin Tools + Basic Guide:
 
-## Golang for administrator:
+## Golang basic for administrator:
 
-- Please refer to [here](./go/README.md).
+- Please refer to [here](./docs/golang.md).
 
-## Python for administrator:
+## Python basic for administrator:
 
-- Please refer to [here](./python/README.md).
+- Please refer to [here](./docs/python.md).
 
-## Shell script for administrator:
+## Shell basic script for administrator:
 
-- Fish/Shell please refer to [here](./shell/fish/README.md).
-- Bash/Shell please refer to [here](./shell/bash/README.md).
+- Fish/Shell please refer to [here](./docs/fish_shell.md).
+- Bash/Shell please refer to [here](./docs/bash_shell.md).
 
-# General REGEX
+# Common REGEX pattern
 
 - IP regex pattern: `((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}`
