@@ -12,6 +12,9 @@
 
 - Fish/Shell please refer to [here](./docs/fish_shell.md).
 - Bash/Shell please refer to [here](./docs/bash_shell.md).
+- AWK please refer to [here](./docs/awk.md).
+- VI/VIM please refer to [here].
+- FIND & GREP please refer to [here].
 
 # Common REGEX pattern
 
