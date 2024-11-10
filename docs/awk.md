@@ -1,4 +1,4 @@
-# AWK variable abbriviations
+# AWK variable abbriviations <sup><sup>[back](../README.md)</sup></sup>
 
 | Variables   | Description                                                                                                                               |
 | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
@@ -15,7 +15,7 @@
 | IGNORECASE  | Ignore character case                                                                                                                     |
 | $n          | The n<sup>th</sup> field in the current record where the fields are separated by FS                                                       |
 
-#W Usage examples
+# Usage examples <sup><sup>[back](../README.md)</sup></sup>
 
 ---
 
