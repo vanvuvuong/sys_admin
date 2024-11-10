@@ -8,6 +8,7 @@
 - [Syntax](#syntax)
 - [If statement](#if-statement)
 - [Linux basic commands](#linux-basic-commands)
+- [Handy snippets](#handy-snippets)
 
 # [Bash Keywords](#table-of-content-back)
 
@@ -60,3 +61,7 @@ Check out in [here](./bash/4.if-statement.md)
 # [Linux basic commands](#table-of-content-back)
 
 Check out in [here](./bash/5.linux-basic-command.md)
+
+# [Handy snippets](#table-of-content-back)
+
+Check out in [here](./bash/6.handy-snippet.md)
