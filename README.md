@@ -14,7 +14,7 @@
 - Bash/Shell please refer to [here](./docs/bash_shell.md).
 - AWK please refer to [here](./docs/awk.md).
 - VI/VIM please refer to [here].
-- FIND & GREP please refer to [here].
+- FIND & GREP please refer to [here](./docs/find.md).
 
 # Common REGEX pattern
 
