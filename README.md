@@ -21,3 +21,14 @@
 # Common REGEX pattern
 
 - IP regex pattern: `((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}`
+
+# Configure server series
+- Webserver:
+  - Nginx
+  - Apache
+  - HAProxy
+- System packages
+  - SSH
+  - FTP
+  - NFS
+  - SELinux
