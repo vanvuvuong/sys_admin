@@ -1,3 +1,5 @@
+# Linux curate commands lists in [here](./cheatsheets/Linux%20Commands.pdf)
+
 # System Admin Tools + Basic Guide
 
 > Try to keep all things clean, reusable & short as much as possible. Give me a star if you found it useful.
@@ -23,6 +25,7 @@
 - IP regex pattern: `((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}`
 
 # Configure server series
+
 - Webserver:
   - Nginx
   - Apache
