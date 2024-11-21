@@ -1,6 +1,8 @@
 tmp
 manifests
-**/*/*.log
-**/*/file*.csv
+*.log
+file*.csv
 .vscode/settings.json
 Linux Commands.ods
+build/
+*.log
