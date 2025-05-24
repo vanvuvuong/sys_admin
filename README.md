@@ -24,7 +24,7 @@
 - IP regex pattern: `((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}`
 - All words in quote block: `"(.*?)"`
 
-# Configure server series ( )
+# Configure server series (not writing yet)
 
 - Webserver:
   - Nginx
